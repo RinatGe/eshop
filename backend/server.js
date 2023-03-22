@@ -3,6 +3,7 @@ import data from './data.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import seedRouter from './routes/seedRoutes.js';
 
 dotenv.config();
 
