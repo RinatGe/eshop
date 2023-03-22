@@ -1,5 +1,4 @@
-import data from './data';
-import {BrowserRouter, Routes , Route ,Link} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 
@@ -12,8 +11,8 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route peth='/product/:token' element={<ProductPage />}/>
-            <Route peth='/' element={<HomePage />}/>
+            <Route path="/product/:token" element={<ProductPage />} />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </main>
       </div>

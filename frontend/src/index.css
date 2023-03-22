@@ -13,17 +13,15 @@ header {
 }
 
 header a {
-color:#ffffff;
-font-weight: bold;
-text-decoration: none;
-
+  color: #ffffff;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
 
 .product {
@@ -31,12 +29,11 @@ text-decoration: none;
   margin: 1rem;
 }
 
-.product img{
-width: 100%;
-max-width: 400px;
+.product img {
+  width: 100%;
+  max-width: 400px;
 }
 
-main{
+main {
   padding: 1rem;
 }
-
