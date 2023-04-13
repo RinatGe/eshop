@@ -65,3 +65,7 @@ main {
   box-shadow: 10px 10px 10px #888888;
   transform: scale(1.02);
 }
+
+.i-color {
+  color: #ffffff;
+}

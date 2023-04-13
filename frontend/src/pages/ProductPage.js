@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
@@ -10,6 +10,13 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { Helmet } from 'react-helmet-async';
+import Loading from '../Components/Loading';
+import MessageBox from '../Components/MessageBox';
+import { getError } from '../uttiles/GetError';
+import { Store } from '../store';
+
+
+
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -41,7 +48,7 @@ function ProductPage() {
         const res = await axios.get(`/api/v1/product/token/${token}`); //from line 29
         dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (err) {
-        dispatch({ type: 'GET_FAIL', payload: err.message });
+        dispatch({ type: 'GET_FAIL', payload: getError(err) });
       }
 
       //setProducts(res.data);
@@ -50,13 +57,29 @@ function ProductPage() {
     getProduct();
   }, [token]); //each time the token is changing-the useEffect method renders all over again
 
+
+  const {state,dispatch: ctxDispatch} = useContext(Store);
+
+  const {cart } = state; 
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    const { data } = await axios.get(`/api/v1/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+    
+  };
+
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
+         <Loading></Loading>
+        ) : error ? (
+          <MessageBox varient='danger'>{error}</MessageBox>
+        )  : (
         <Row>
           <Col md={6}>
             <img src={product.image} alt={product.name} className="img-large" />
@@ -95,6 +118,9 @@ function ProductPage() {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
+
+
+                      
                       <Col>Status:</Col>
                       <Col>
                         {product.countInStock > 0 ? (
@@ -110,7 +136,7 @@ function ProductPage() {
                     <ListGroup.Item>
                       <div className="d-grid">
                         <Button
-                          //  onClick={addToCartHandler}
+                           onClick={addToCartHandler}
                           variant="primary"
                         >
                           Add to Cart

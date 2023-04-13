@@ -1,6 +1,5 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../Components/Product';
@@ -46,7 +45,7 @@ function HomePage() {
   return (
     <div>
       <Helmet>
-        <title>Home Page</title>
+        <title>ESHOP</title>
       </Helmet>
       <h1>Products</h1>
       <div className="products">
