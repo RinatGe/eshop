@@ -23,7 +23,8 @@ function App() {
           <NavBar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
-                <NavBar.Brand>EShop</NavBar.Brand>
+                <NavBar.Brand>EShop</NavBar.Brand> 
+                 </LinkContainer>
                 <nav className="ms-auto w-50 justify-content-end">
                   <Link to="/cart" className="nav-link">
                     <i className="fas fa-shopping-cart text-white"></i>
@@ -34,7 +35,6 @@ function App() {
                     )}
                   </Link>
                 </nav>
-              </LinkContainer>
             </Container>
           </NavBar>
         </header>
