@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: 1,
       name: 'productA-name',
       category: '',
       price: 100,
@@ -13,6 +14,7 @@ const data = {
       image: '/images/p1.jpeg',
     },
     {
+      _id: 2,
       name: 'productB-name',
       category: '',
       price: 15,
@@ -25,6 +27,7 @@ const data = {
       image: '/images/p2.jpeg',
     },
     {
+      _id: 3,
       name: 'productC-name',
       category: '',
       price: 20,
@@ -37,6 +40,7 @@ const data = {
       image: '/images/p3.jpeg',
     },
     {
+      _id: 4,
       name: 'productD-name',
       category: '',
       price: 60,
@@ -50,6 +54,7 @@ const data = {
     },
 
     {
+      _id: 5,
       name: 'productE-name',
       category: '',
       price: 100,
@@ -62,6 +67,7 @@ const data = {
       image: '/images/p1.jpeg',
     },
     {
+      _id: 6,
       name: 'productF-name',
       category: '',
       price: 15,
@@ -74,6 +80,7 @@ const data = {
       image: '/images/p2.jpeg',
     },
     {
+      _id: 7,
       name: 'productG-name',
       category: '',
       price: 20,
@@ -86,6 +93,7 @@ const data = {
       image: '/images/p3.jpeg',
     },
     {
+      _id: 8,
       name: 'productH-name',
       category: '',
       price: 60,

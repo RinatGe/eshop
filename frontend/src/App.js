@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
 import { useContext } from 'react';
 import { Store } from './store';
+import CartPage from './pages/CartPage.js';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route path="/product/:token" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
               <Route path="/" element={<HomePage />} />
             </Routes>
           </Container>

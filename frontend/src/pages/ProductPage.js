@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import {  useParams , useNavigate} from 'react-router-dom';
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
@@ -18,6 +18,7 @@ import { Store } from '../store';
 
 
 
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
@@ -32,6 +33,8 @@ const reducer = (state, action) => {
 };
 
 function ProductPage() {
+  const navigate = useNavigate();
+
   const params = useParams(); //hook that returns an object of key value pairs
   const { token } = params; //deconstruction of the object to just the "key" part-token
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
@@ -70,6 +73,7 @@ function ProductPage() {
       return;
     }
     ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
+    navigate('/cart');
     
   };
 
