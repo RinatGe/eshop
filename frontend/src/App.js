@@ -1,4 +1,4 @@
-//import './App.css';
+//import './App.css';//Rinats proj
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage.js';
 import ProductPage from './pages/ProductPage.js';
@@ -10,6 +10,7 @@ import { Badge } from 'react-bootstrap';
 import { useContext } from 'react';
 import { Store } from './store';
 import CartPage from './pages/CartPage.js';
+import SigninPage from './pages/SigninPage.js';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <main>
           <Container className="mt-3">
             <Routes>
+             <Route path="/signin" element={<SigninPage />} />
               <Route path="/product/:token" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/" element={<HomePage />} />

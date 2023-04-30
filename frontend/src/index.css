@@ -82,3 +82,7 @@ main {
   height: 70px;
   
 }
+
+.small-container {
+  max-width: 600px;
+}

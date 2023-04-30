@@ -1,9 +1,13 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+ 
+
   products: [
     {
-      _id: 1,
+      
       name: 'productA-name',
-      category: '',
+      category: "Men's Clothing",
       price: 100,
       token: 'productA-token',
       brand: 'Teva',
@@ -14,9 +18,9 @@ const data = {
       image: '/images/p1.jpeg',
     },
     {
-      _id: 2,
+      
       name: 'productB-name',
-      category: '',
+      category: "Men's Clothing",
       price: 15,
       token: 'productB-token',
       brand: 'Teva',
@@ -27,9 +31,9 @@ const data = {
       image: '/images/p2.jpeg',
     },
     {
-      _id: 3,
+      
       name: 'productC-name',
-      category: '',
+      category: "Men's Clothing",
       price: 20,
       token: 'productC-token',
       brand: 'Teva',
@@ -42,7 +46,7 @@ const data = {
     {
       _id: 4,
       name: 'productD-name',
-      category: '',
+      category: "Men's Clothing",
       price: 60,
       token: 'productD-token',
       brand: 'Teva',
@@ -54,9 +58,9 @@ const data = {
     },
 
     {
-      _id: 5,
+     
       name: 'productE-name',
-      category: '',
+      category: "Men's Clothing",
       price: 100,
       token: 'productE-token',
       brand: 'Teva',
@@ -67,9 +71,9 @@ const data = {
       image: '/images/p1.jpeg',
     },
     {
-      _id: 6,
+     
       name: 'productF-name',
-      category: '',
+      category: "Men's Clothing",
       price: 15,
       token: 'productF-token',
       brand: 'Teva',
@@ -80,9 +84,9 @@ const data = {
       image: '/images/p2.jpeg',
     },
     {
-      _id: 7,
+    
       name: 'productG-name',
-      category: '',
+      category: "Men's Clothing",
       price: 20,
       token: 'productG-token',
       brand: 'Teva',
@@ -93,9 +97,9 @@ const data = {
       image: '/images/p3.jpeg',
     },
     {
-      _id: 8,
+      
       name: 'productH-name',
-      category: '',
+      category: "Men's Clothing",
       price: 60,
       token: 'productH-token',
       brand: 'Teva',
@@ -105,6 +109,15 @@ const data = {
       description: 'liquid capsule',
       image: '/images/p4.jpeg',
     },
-  ],
+  ], 
+
+  users:[
+    {
+      name: "Admin",
+      email: "admin@example.com",
+      password: bcrypt.hashSync("12345")
+    }
+
+  ]
 };
 export default data;
