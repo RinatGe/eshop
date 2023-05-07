@@ -15,6 +15,7 @@ function Product(props) {
     cart: { cartItems },
   } = state;
 
+  //before pessach
   const addToCartHandler = async () => {
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
