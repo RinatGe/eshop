@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
-//import data from './data.js';
+import data from './data.js';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import seedRouter from './routes/seedRoutes.js';
@@ -41,5 +41,5 @@ mongoose
     });
   })
   .catch((err) => {
-    console.error(`faild to connect mongo ${err.message}`);
+    console.log(err.message);
   });

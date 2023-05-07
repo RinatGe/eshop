@@ -3,10 +3,12 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../Components/Product';
-import { Helmet } from'react-helmet-async';
-import Loading from '../Components/Loading';
-import MessageBox from '../Components/MessageBox';
+import { Helmet } from 'react-helmet-async';
+import Loading from '../Components/shared/Loading';
+import MessageBox from '../Components/shared/MessageBox';
+//TODO: Aggregate imports into single js file!!
 
+//TODO: export all case strings into const!!
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
@@ -21,7 +23,7 @@ const reducer = (state, action) => {
 };
 
 function HomePage() {
-  const [{ loading, error, products }, dispatch] = useReducer((reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
     products: [],
@@ -45,17 +47,18 @@ function HomePage() {
   return (
     <div>
       <Helmet>
-        <title>ESHOP</title>
+        <title>EShop</title>
       </Helmet>
       <h1>Products</h1>
       <div className="products">
         {loading ? (
-         <Loading></Loading>
+          <Loading/>
         ) : error ? (
-          <MessageBox varient='danger'>{error}</MessageBox>
+          <MessageBox variant='danger'>
+            {error}
+          </MessageBox>
         ) : (
           <Row>
-            
             {products.map((product) => (
               <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
                 <Product product={product}></Product>
