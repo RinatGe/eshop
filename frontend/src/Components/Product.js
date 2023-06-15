@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Rating from './shared/Rating';
 import axios from 'axios';
 import { useContext } from 'react';
-import { Store } from '../store.js';
+import { Store } from '../Store.js';
 
 function Product(props) {
   const { product } = props;
@@ -14,6 +14,10 @@ function Product(props) {
   const {
     cart: { cartItems },
   } = state;
+
+  const handleDragStart = (event) => {
+    event.dataTransfer.setData('text/plain', product._id);
+  };
 
   //before pessach
   const addToCartHandler = async () => {
@@ -32,7 +36,12 @@ function Product(props) {
   };
 
   return (
-    <Card key={product.token} className="product-card">
+    <Card
+      draggable="true"
+      onDragStart={handleDragStart}
+      key={product.token}
+      className="product-card"
+    >
       <div className="card-image-wrapper ">
         <Link to={`/product/${product.token}`}>
           <img

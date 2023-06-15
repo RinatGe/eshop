@@ -13,7 +13,7 @@ import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/shared/Loading';
 import MessageBox from '../Components/shared/MessageBox';
 import { getError } from '../Utils';
-import { Store } from '../store';
+import { Store } from '../Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -76,9 +76,7 @@ function ProductPage() {
       {loading ? (
         <Loading />
       ) : error ? (
-        <MessageBox variant='danger'>
-          {error}
-        </MessageBox>
+        <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
           <Row>
@@ -101,13 +99,12 @@ function ProductPage() {
                 <ListGroup.Item>
                   <Rating
                     rating={product.rating}
-                    numReviews={product.numReviews}>
-                  </Rating>
+                    numReviews={product.numReviews}
+                  ></Rating>
                 </ListGroup.Item>
-                <ListGroup.Item>Price: ${product.price}
-                </ListGroup.Item>
+                <ListGroup.Item>Price: ${product.price}</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: <p className='lead'>{product.description}</p>
+                  Description: <p className="lead">{product.description}</p>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -115,7 +112,7 @@ function ProductPage() {
             <Col md={3}>
               <Card>
                 <Card.Body>
-                  <ListGroup variant='flush'>
+                  <ListGroup variant="flush">
                     <ListGroup.Item>
                       <Row>
                         <Col>Price:</Col>
@@ -127,9 +124,9 @@ function ProductPage() {
                         <Col>Status:</Col>
                         <Col>
                           {product.countInStock > 0 ? (
-                            <Badge bg='success'>In Stock</Badge>
+                            <Badge bg="success">In Stock</Badge>
                           ) : (
-                            <Badge bg='danger'>Not in Stock</Badge>
+                            <Badge bg="danger">Not in Stock</Badge>
                           )}
                         </Col>
                       </Row>
@@ -137,10 +134,8 @@ function ProductPage() {
 
                     {product.countInStock > 0 && (
                       <ListGroup.Item>
-                        <div className='d-grid'>
-                          <Button
-                            onClick={addToCartHandler}
-                            variant='primary'>
+                        <div className="d-grid">
+                          <Button onClick={addToCartHandler} variant="primary">
                             Add to cart
                           </Button>
                         </div>

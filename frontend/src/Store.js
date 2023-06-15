@@ -6,13 +6,15 @@ export const Store = createContext(); //const for the "collection" of states we 
 
 
 //initial state--->if i will refresh the page it will display
-// with saved actions and changes
+// with saved actions and changes-if browser closes
 const initialState = {
   cart: {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
   },
+  userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+
 };
 
 function reducer(state, action) {
@@ -36,6 +38,14 @@ function reducer(state, action) {
       );
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
+    }
+
+    case 'USER_SIGNIN': {
+      return { ...state, userInfo:action.payload}
+    }
+
+    case 'USER_SIGNOUT': {
+      return { ...state, userInfo:null };
     }
 
     default:

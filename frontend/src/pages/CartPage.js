@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Store } from '../store.js';
+import { Store } from '../Store.js';
 import { Helmet } from 'react-helmet-async';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,7 +9,7 @@ import MessageBox from '../Components/shared/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import { useNavigate } from'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function CartPage() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -30,18 +30,18 @@ function CartPage() {
       type: 'ADD_TO_CART',
       payload: { ...item, quantity },
     });
-  }
+  };
 
   const removeItemHandler = async (item) => {
     ctxDispatch({
       type: 'REMOVE_FROM_CART',
       payload: item,
     });
-  }
+  };
 
-  const checkoutHandler = async () => {    
-    navigate("/signin?redirect=/shipping");
-  }
+  const checkoutHandler = async () => {
+    navigate('/signin?redirect=/shipping');
+  };
 
   return (
     <div>
@@ -93,7 +93,10 @@ function CartPage() {
                     </Col>
                     <Col md={3}>${item.price}</Col>
                     <Col md={2}>
-                      <Button variant="light" onClick={() => removeItemHandler(item)}>
+                      <Button
+                        variant="light"
+                        onClick={() => removeItemHandler(item)}
+                      >
                         <i className="fas fa-trash"></i>
                       </Button>
                     </Col>
