@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { useReducer } from 'react';
 
 export const Store = createContext(); //const for the "collection" of states we will pass --for using
-// context hook,instad of using props.
+// context hook,instad of using props.global states for every page
 
 
 //initial state--->if i will refresh the page it will display
@@ -12,6 +12,9 @@ const initialState = {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+      
+      shippingAddress: localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) 
+      : {}
   },
   userInfo: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 
@@ -45,8 +48,14 @@ function reducer(state, action) {
     }
 
     case 'USER_SIGNOUT': {
-      return { ...state, userInfo:null };
+      return { ...state, userInfo:null , cart:{cartItems: [] ,shippingAddress: {}}};
     }
+
+    case 'SAVE_SHIPPING_ADDRESS' : {
+      return { ...state,cart: {...state.cart,shippingAddress: action.payload}};
+    }
+
+  
 
     default:
       return state;

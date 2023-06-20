@@ -7,6 +7,8 @@ import { useContext } from 'react';
 import { Store } from './Store';
 import CartPage from './pages/CartPage.js';
 import SigninPage from './pages/SigninPage.js';
+import SignupPage from './pages/SignupPage.js';
+import ShippingAddressPage from './pages/ShippingAddressPage.js';
 import Header from './Components/Header.js';
 import {ToastContainer} from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
@@ -25,9 +27,11 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route path="/signin" element={<SigninPage />} />
+              <Route path="/signup" element={<SignupPage />} />
               <Route path="/product/:token" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/" element={<HomePage />} />
+              <Route path="/shipping" element={<ShippingAddressPage />} />
             </Routes>
           </Container>
         </main>
