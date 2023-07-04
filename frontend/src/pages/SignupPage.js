@@ -38,7 +38,7 @@ return;
         email,
         password,
       });
-      ctxDispatch({ type: 'USER_SIGNUP', payload: data });//our way to talk to global state(Store) and tell him 'USER_SIGNIN', 
+      ctxDispatch({ type: 'USER_SIGNIN', payload: data });//our way to talk to global state(Store) and tell him 'USER_SIGNIN', 
       //in payload telling to global state WHAT to save,the data(all his data) -line 31
       localStorage.setItem('userInfo', JSON.stringify(data));//saving to local storage so will "survive" render of page/refresh
       navigate(redirect || '/');
