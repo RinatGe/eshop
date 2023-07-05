@@ -1,14 +1,21 @@
+import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+
 import Badge from 'react-bootstrap/Badge';
 import { LinkContainer } from 'react-router-bootstrap';
 import NavBar from 'react-bootstrap/Navbar';
-import React, { useContext } from 'react';
+
 import { Store } from '../Store.js';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+
+
+
 function Header({ cart }) {
+
+
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {cart: { cartItems },userInfo} = state;
 
@@ -92,7 +99,8 @@ function Header({ cart }) {
                 </LinkContainer>
 
                 <NavDropdown.Divider />
-
+                
+                
                 <Link
                   onClick={signoutHandler}
                   to="#signout"
