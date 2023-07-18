@@ -8,6 +8,7 @@ import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import { StoreProvider } from './Store';
 
+
 axios.defaults.baseURL = 'http://localhost:5000';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

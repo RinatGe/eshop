@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext  } from 'react';
 import Container from 'react-bootstrap/Container';
 import axios from 'axios';
-import { Link} from 'react-router-dom';
+import { Link,useNavigate ,useLocation} from 'react-router-dom';
 
 import Badge from 'react-bootstrap/Badge';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -15,6 +15,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header({ cart }) {
 
+  const navigate = useNavigate();//you can pass an obj inside to.
+  const location = useLocation();//allows us to get information about the current route.
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {cart: { cartItems },userInfo} = state;
@@ -65,6 +67,9 @@ function Header({ cart }) {
     <div>
       <header className="header">
         <NavBar bg="dark" variant="dark">
+          <Link onClick={()=> navigate(-1)} >
+          {location.pathname !== '/' && <i>Back</i>}{/* if the location path isNOT home then it will show the link */}
+          </Link>
           <Container>
             <LinkContainer to="/">
               <NavBar.Brand>Eshop</NavBar.Brand>

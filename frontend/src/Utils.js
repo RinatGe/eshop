@@ -1,6 +1,8 @@
 //like daniels' asaf prefers folder of utiles and each one has its on file...
 //import { ADD_TO_CART, GET_FAIL, axios } from './Imports';
 
+import axios from 'axios';
+
 
 
 export const getError = (error) => {
@@ -10,22 +12,22 @@ export const getError = (error) => {
     );
 };
 
-// export const addToCartHandler = async (product, cartItems, ctxDispatch) => {
+
+
+export const addToCartHandler = async (product , cartItems, ctxDispatch) => {
+
+    const existItem = cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    try {
+    const { data } = await axios.get(`/api/v1/products/${product._id}`);
+
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+  } catch (err){
+    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
     
-//     const existedItem = cartItems.find((x) => x._id === product._id);
-//     const quantity = existedItem ? existedItem.quantity + 1 : 1;
-
-//     try {
-//         const { data } = await axios.get(`/api/v1/products/${product._id}`);
-
-//         if (data.countInStock < quantity) {
-//             window.alert('Sorry, Product is out of stock');
-//             return;
-//         }
-
-//         ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
-
-//     } catch (err) {
-//         ctxDispatch({ type: 'GET_FAIL', payload: err.message });
-//     }
-// }
+  }
+  };

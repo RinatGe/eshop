@@ -6,9 +6,8 @@ import Product from '../Components/Product';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/shared/Loading';
 import MessageBox from '../Components/shared/MessageBox';
-//TODO: Aggregate imports into single js file!!
 
-//TODO: export all case strings into const!!
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':

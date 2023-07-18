@@ -9,10 +9,12 @@ import CartPage from './pages/CartPage.js';
 import SigninPage from './pages/SigninPage.js';
 import SignupPage from './pages/SignupPage.js';
 import ShippingAddressPage from './pages/ShippingAddressPage.js';
+import SubmitOrderPage from './pages/SubmitOrderPage.js';
 import PaymentPage from './pages/PaymentPage.js';
 import Header from './Components/Header.js';
 import {ToastContainer} from 'react-toastify';
  import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   
@@ -38,7 +40,9 @@ function App() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/shipping" element={<ShippingAddressPage />} />
-              <Route path="/payment" element={<PaymentPage />}/>
+              <Route path="placeorder" element={<SubmitOrderPage />} />
+              <Route path="/payment" element={<PaymentPage/>} />
+
             </Routes>
           </Container>
         </main>

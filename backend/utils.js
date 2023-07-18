@@ -5,11 +5,14 @@ export const generateToken = (user) => {
 };
 
 
+
+//IS AUTH IS A MIDDELWERE-midiator,api that called before the POST is called and doing NEXT-NEXT...
+//isAuth is inmplamintaition of design pattern-CHAIN OF RESPONSABILITY
 export const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
       const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
-      jwt.verify(token, process.env.JWT_SECRET, (err, decode) => {
+      jwt.verify(token, process.env.JWT_PW, (err, decode) => {
           if (err) {
               res.status(401).send({ message: 'Invalid Token' });
           } else {

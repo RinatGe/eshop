@@ -11,14 +11,13 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
 function CartPage() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
 
   const navigate = useNavigate();
 
-  const {
-    cart: { cartItems },
-  } = state;
+  const { cart: { cartItems }} = state;
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/v1/products/${item._id}`);
@@ -49,6 +48,7 @@ function CartPage() {
         <title>Shopping Cart</title>
       </Helmet>
       <h1>Shopping Cart</h1>
+      
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (

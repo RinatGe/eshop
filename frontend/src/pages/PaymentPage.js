@@ -20,9 +20,11 @@ const PaymentPage = () => {
   e.preventDefault(); //prevents rendering all page
 
 ctxDispatch({type:'SAVE_PAYMENT_METHOD',payload:paymentMethodName});
-localStorage.setItem('paymentMethod',paymentMethodName);
+localStorage.setItem('paymentMethod', paymentMethodName);
 navigate('/placeorder');
 }
+
+
 
 useEffect(()=> {
   if(!shippingAddress.address){
@@ -40,7 +42,7 @@ useEffect(()=> {
       <div className="container small-container">
       <h1 className="my-3">Shipping Address</h1>
       <Form onSubmit={submitHandler}>
-                    <div className="mb-3">
+      <div className="mb-3">
                         <Form.Check type='radio' id='PayPal' label='PayPal' value='PayPal' checked={paymentMethodName === 'PayPal'}
                             onChange={(e) => setPaymentMethodName(e.target.value)} />
                     </div>

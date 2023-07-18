@@ -12,39 +12,41 @@ import Badge from 'react-bootstrap/Badge';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/shared/Loading';
 import MessageBox from '../Components/shared/MessageBox';
-import { getError } from '../Utils';
+import { getError, addToCartHandler } from '../Utils';
+import { productPageReducer } from '../reducers/productPageReducer';
 import { Store } from '../Store';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_REQUEST':
-      return { ...state, loading: true };
-    case 'GET_SUCCESS':
-      return { ...state, product: action.payload, loading: false };
-    case 'GET_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
 function ProductPage() {
-  const navigate = useNavigate();
-
   const params = useParams(); //hook that returns an object of key value pairs
   const { token } = params; //deconstruction of the object to just the "key" part-token
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+  const navigate = useNavigate();
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {
+    cart: { cartItems },
+  } = state;
+
+  const initialState = {
     loading: true,
     error: '',
     product: [],
-  });
+  };
 
+  const [{ loading, error, product }, dispatch] = useReducer(
+    productPageReducer,
+    initialState
+  );
+
+  const addToCart = async () => {
+    await addToCartHandler(product, cartItems, ctxDispatch);
+    navigate('/cart');
+  };
   useEffect(() => {
     const getProduct = async () => {
       dispatch({ type: 'GET_REQUEST' });
 
       try {
-        const res = await axios.get(`/api/v1/product/token/${token}`); //from line 29
+        const res = await axios.get(`/api/v1/products/token/${token}`); //from line 29
         dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (err) {
         dispatch({ type: 'GET_FAIL', payload: getError(err) });
@@ -55,21 +57,6 @@ function ProductPage() {
 
     getProduct();
   }, [token]); //each time the token is changing-the useEffect method renders all over again
-
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-
-  const { cart } = state;
-  const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/v1/products/${product._id}`);
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
-    }
-    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...product, quantity } });
-    navigate('/cart');
-  };
 
   return (
     <div>
@@ -135,7 +122,7 @@ function ProductPage() {
                     {product.countInStock > 0 && (
                       <ListGroup.Item>
                         <div className="d-grid">
-                          <Button onClick={addToCartHandler} variant="primary">
+                          <Button onClick={() => addToCart()} variant="primary">
                             Add to cart
                           </Button>
                         </div>
